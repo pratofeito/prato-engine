@@ -4,18 +4,18 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
-#define SPLASH_STATE_SHOW_TIME 3
+#define SPLASH_STATE_SHOW_TIME 1
 
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "resources/splash.png"
+#define SPLASH_SCENE_BACKGROUND_FILEPATH "resources/prato-logo.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "resources/main-menu.png"
 
 #define MAIN_MENU_TITLE_FILEPATH "resources/main-menu.png"
-#define MAIN_MENU_PLAY_BUTTON "resources/main-menu.png"
-#define MAIN_MENU_PLAY_BUTTON_OUTER "resources/main-menu.png"
+#define MAIN_MENU_PLAY_BUTTON "resources/main-menu/play_btn.png"
+#define MAIN_MENU_QUIT_BUTTON "resources/main-menu/quit_btn.png"
 
 #define GAME_BACKGROUND_FILEPATH "resources/splash.png"
 
-#define PAUSE_BUTTON "resources/pause.png"
+#define PAUSE_BUTTON "resources/pause_btn.png"
 
 #define X_PIECE_FILEPATH "resources/X.png"
 #define O_PIECE_FILEPATH "resources/O.png"
@@ -37,7 +37,9 @@
 #define STATE_DRAW 92
 
 #define PAUSE_BACKGROUND_FILEPATH "resources/pause_bg.png"
-#define RESUME_BUTTON "resources/resume.png"
-#define HOME_BUTTON "resources/home.png"
+#define PAUSE_MENU_RESUME_BUTTON "resources/pause-menu/resume_btn.png"
+#define PAUSE_MENU_HOME_BUTTON "resources/pause-menu/home_btn.png"
+
+#define DEFAULT_FONT_PATH "resources/fonts/VT323.ttf"
 
 #endif

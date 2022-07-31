@@ -1,5 +1,7 @@
 #include "states/menu-state.hpp"
 #include "states/game-state.hpp"
+#include "states/splash-state.hpp"
+#include "states/pause-state.hpp"
 #include "definitions.hpp"
 
 namespace pte
@@ -10,20 +12,23 @@ namespace pte
 
     void MainMenuState::init()
     {
-        this->data->assets.load_texture("Background", MAIN_MENU_BACKGROUND_FILEPATH);
-        this->data->assets.load_texture("Play Button", MAIN_MENU_PLAY_BUTTON);
-        this->data->assets.load_texture("Play Button Outer", MAIN_MENU_PLAY_BUTTON_OUTER);
-        this->data->assets.load_texture("Game Title", MAIN_MENU_TITLE_FILEPATH);
+        // setup title
+        this->data->assets.load_font("default_font", DEFAULT_FONT_PATH);
+        this->title.setFont(this->data->assets.get_font("default_font"));
+        this->title.setString("MAIN MENU");
+        this->title.setCharacterSize(55);
+        this->title.setFillColor(sf::Color::White);
+        this->title.setPosition((SCREEN_WIDTH / 2) - (this->title.getGlobalBounds().width / 2), SCREEN_HEIGHT * 0.2);
 
-        this->background.setTexture(this->data->assets.get_texture("Background"));
-        this->play_button.setTexture(this->data->assets.get_texture("Play Button"));
-        this->play_button_outer.setTexture(this->data->assets.get_texture("Play Button Outer"));
-        this->title.setTexture(this->data->assets.get_texture("Game Title"));
+        // setup play button
+        this->data->assets.load_texture("play_button", MAIN_MENU_PLAY_BUTTON);
+        this->play_button.setTexture(this->data->assets.get_texture("play_button"));
+        this->play_button.setPosition((SCREEN_WIDTH / 2) - (this->play_button.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) + this->play_button.getGlobalBounds().height);
 
-        this->play_button.setPosition((SCREEN_WIDTH / 2) - (this->play_button.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (this->play_button.getGlobalBounds().height / 2));
-        this->play_button_outer.setPosition((SCREEN_WIDTH / 2) - (this->play_button_outer.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (this->play_button_outer.getGlobalBounds().height / 2));
-
-        this->title.setPosition((SCREEN_WIDTH / 2) - (this->title.getGlobalBounds().width / 2), this->title.getGlobalBounds().height * 0.1);
+        // setup quit button
+        this->data->assets.load_texture("quit_button", MAIN_MENU_QUIT_BUTTON);
+        this->quit_button.setTexture(this->data->assets.get_texture("quit_button"));
+        this->quit_button.setPosition((SCREEN_WIDTH / 2) - (this->quit_button.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) + this->quit_button.getGlobalBounds().height * 2.2);
     }
 
     void MainMenuState::handle_input()
@@ -32,15 +37,14 @@ namespace pte
 
         while (this->data->window.pollEvent(event))
         {
-            if (sf::Event::Closed == event.type)
+            if (sf::Event::Closed == event.type || this->data->input.is_sprite_clicked(this->quit_button, sf::Mouse::Left, this->data->window))
             {
                 this->data->window.close();
             }
 
             if (this->data->input.is_sprite_clicked(this->play_button, sf::Mouse::Left, this->data->window))
             {
-                std::cout << "Go To Game Screen" << std::endl;
-                this->data->machine.add_state(state_ref(new GameState(data)), true);
+                this->data->machine.add_state(state_ref(new GameState(this->data)), true);
             }
         }
     }
@@ -51,12 +55,11 @@ namespace pte
 
     void MainMenuState::draw(float delta_time)
     {
-        this->data->window.clear(sf::Color::Cyan);
+        this->data->window.clear(sf::Color(65, 11, 95));
 
-        this->data->window.draw(this->background);
-        this->data->window.draw(this->play_button);
-        this->data->window.draw(this->play_button_outer);
         this->data->window.draw(this->title);
+        this->data->window.draw(this->play_button);
+        this->data->window.draw(this->quit_button);
 
         this->data->window.display();
     }

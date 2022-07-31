@@ -13,11 +13,10 @@ namespace pte
     {
     private:
         game_data_ref data;
-
-        sf::Sprite background;
-
+        
         sf::Sprite resume_button;
         sf::Sprite home_button;
+        sf::Text title;
 
     public:
         PauseState(game_data_ref data);

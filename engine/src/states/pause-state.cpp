@@ -11,16 +11,23 @@ namespace pte
 
 	void PauseState::init()
 	{
-		this->data->assets.load_texture("Pause Background", PAUSE_BACKGROUND_FILEPATH);
-		this->data->assets.load_texture("Resume Button", RESUME_BUTTON);
-		this->data->assets.load_texture("Home Button", HOME_BUTTON);
+		// setup title
+        this->data->assets.load_font("default_font", DEFAULT_FONT_PATH);
+        this->title.setFont(this->data->assets.get_font("default_font"));
+        this->title.setString("PAUSE MENU");
+        this->title.setCharacterSize(55);
+        this->title.setFillColor(sf::Color::White);
+        this->title.setPosition((SCREEN_WIDTH / 2) - (this->title.getGlobalBounds().width / 2), SCREEN_HEIGHT * 0.2);
 
-		this->background.setTexture(this->data->assets.get_texture("Pause Background"));
-		this->resume_button.setTexture(this->data->assets.get_texture("Resume Button"));
-		this->home_button.setTexture(this->data->assets.get_texture("Home Button"));
+        // setup play button
+        this->data->assets.load_texture("resume_button", PAUSE_MENU_RESUME_BUTTON);
+        this->resume_button.setTexture(this->data->assets.get_texture("resume_button"));
+        this->resume_button.setPosition((SCREEN_WIDTH / 2) - (this->resume_button.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) + this->resume_button.getGlobalBounds().height);
 
-		this->resume_button.setPosition((this->data->window.getSize().x / 2) - (this->resume_button.getLocalBounds().width / 2), (this->data->window.getSize().y / 3) - (this->resume_button.getLocalBounds().height / 2));
-		this->home_button.setPosition((this->data->window.getSize().x / 2) - (this->home_button.getLocalBounds().width / 2), (this->data->window.getSize().y / 3 * 2) - (this->home_button.getLocalBounds().height / 2));
+        // setup quit button
+        this->data->assets.load_texture("home_button", PAUSE_MENU_HOME_BUTTON);
+        this->home_button.setTexture(this->data->assets.get_texture("home_button"));
+        this->home_button.setPosition((SCREEN_WIDTH / 2) - (this->home_button.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) + this->home_button.getGlobalBounds().height * 2.2);
 	}
 
 	void PauseState::handle_input()
@@ -59,7 +66,7 @@ namespace pte
 	{
 		this->data->window.clear(sf::Color::Red);
 
-		this->data->window.draw(this->background);
+		this->data->window.draw(this->title);
 		this->data->window.draw(this->resume_button);
 		this->data->window.draw(this->home_button);
 

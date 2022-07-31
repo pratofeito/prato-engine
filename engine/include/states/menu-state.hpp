@@ -14,10 +14,9 @@ namespace pte
     private:
         game_data_ref data;
 
-        sf::Sprite background;
         sf::Sprite play_button;
-        sf::Sprite play_button_outer;
-        sf::Sprite title;
+        sf::Sprite quit_button;
+        sf::Text title;
 
     public:
         MainMenuState(game_data_ref data);
