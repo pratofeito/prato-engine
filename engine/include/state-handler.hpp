@@ -26,6 +26,7 @@ namespace pte
         void add_state(state_ref new_state, bool replacing);
         void remove_state();
         void process_state_changes();
+        int get_states_size();
  
         state_ref &get_active_state();
     };

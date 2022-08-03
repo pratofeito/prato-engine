@@ -52,4 +52,8 @@ namespace pte
     {
         return this->states.top();
     }
+
+    int StateHandler::get_states_size() {
+        return this->states.size();
+    }
 }

@@ -6,19 +6,30 @@ namespace pte
     Game::Game(int width, int height, std::string title)
     {
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-        data->machine.add_state(state_ref(new SplashState(this->data)), true);
         this->run();
     }
 
     void Game::run()
     {
+
+        // start a new splash state
+        data->state_handler.add_state(state_ref(new SplashState(this->data)), true);
+
+        std::cout << data->state_handler.get_states_size() << std::endl;
+        // check if the game have one state to start
+        // if (data->state_handler.get_states_size() != 0)
+        // {
+        //     std::cerr << "No states initialized. Exiting." << std::endl;
+        //     exit(100);
+        // }
+
         float new_time, frame_time, interpolation;
         float current_time = this->clock.getElapsedTime().asSeconds();
         float accumulator = 0.0f;
 
         while (this->data->window.isOpen())
         {
-            this->data->machine.process_state_changes();
+            this->data->state_handler.process_state_changes();
 
             new_time = this->clock.getElapsedTime().asSeconds();
             frame_time = new_time - current_time;
@@ -33,14 +44,14 @@ namespace pte
 
             while (accumulator >= delta_time)
             {
-                this->data->machine.get_active_state()->handle_input();
-                this->data->machine.get_active_state()->update(delta_time);
+                this->data->state_handler.get_active_state()->handle_input();
+                this->data->state_handler.get_active_state()->update(delta_time);
 
                 accumulator -= delta_time;
             }
 
             interpolation = accumulator / delta_time;
-            this->data->machine.get_active_state()->draw(interpolation);
+            this->data->state_handler.get_active_state()->draw(interpolation);
         }
     }
 }

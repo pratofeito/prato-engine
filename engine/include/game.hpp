@@ -12,7 +12,7 @@ namespace pte
 {
     struct game_data
     {
-        StateHandler machine;
+        StateHandler state_handler;
         sf::RenderWindow window;
         AssetManager assets;
         InputManager input;
@@ -23,7 +23,7 @@ namespace pte
     class Game
     {
     private:
-        const float delta_time = 1.0f / 60.0f; // 60fps
+        const float delta_time = 1.0f / 30.0f; // 30fps
         sf::Clock clock;
 
         game_data_ref data = std::make_shared<game_data>();

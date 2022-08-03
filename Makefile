@@ -29,7 +29,7 @@ CC			:= g++
 CXXFLAGS	:= -std=c++11 -g -Wall
 LDFLAGS		:= -Llibs/sfml-${SYSTEM}/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 BUILD		:= ./build
-INCLUDE		:= -I include -I engine/include -I libs/sfml-${SYSTEM}/include
+INCLUDE		:= -I ./ -I include -I engine/include -I libs/sfml-${SYSTEM}/include
 
 SRC			:= $(call rwildcard, src, *.cpp) $(call rwildcard, engine, *.cpp)
 OBJECTS		:= $(SRC:%.cpp=$(BUILD)/%.o)
