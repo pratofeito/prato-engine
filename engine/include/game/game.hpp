@@ -4,9 +4,9 @@
 #include <memory>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "state-handler.hpp"
-#include "asset-manager.hpp"
-#include "input-manager.hpp"
+#include "state/state-handler.hpp"
+#include "asset-manager/asset-manager.hpp"
+#include "input-manager/input-manager.hpp"
 
 namespace pte
 {
