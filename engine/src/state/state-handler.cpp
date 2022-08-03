@@ -1,4 +1,5 @@
 #include "state/state-handler.hpp"
+#include <iostream>
 
 namespace pte
 {
@@ -53,7 +54,15 @@ namespace pte
         return this->states.top();
     }
 
-    int StateHandler::get_states_size() {
-        return this->states.size();
+    bool StateHandler::have_state_active()
+    {
+        if (this->new_state == nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

@@ -11,17 +11,15 @@ namespace pte
 
     void Game::run()
     {
-
         // start a new splash state
         data->state_handler.add_state(state_ref(new SplashState(this->data)), true);
 
-        std::cout << data->state_handler.get_states_size() << std::endl;
-        // check if the game have one state to start
-        // if (data->state_handler.get_states_size() != 0)
-        // {
-        //     std::cerr << "No states initialized. Exiting." << std::endl;
-        //     exit(100);
-        // }
+        //check if the game have one state to start
+        if (data->state_handler.have_state_active() == false)
+        {
+            std::cerr << "No states initialized. Exiting." << std::endl;
+            exit(100);
+        }
 
         float new_time, frame_time, interpolation;
         float current_time = this->clock.getElapsedTime().asSeconds();
