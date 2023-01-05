@@ -31,6 +31,7 @@ void SplashState::update(float delta_time)
     {
         // Switch To Main Menu
         this->data->state_handler.add_state(pte::state_ref(new MainMenuState(data)), true);
+        // add_state<MainMenuState>(data, true);
     }
 }
 

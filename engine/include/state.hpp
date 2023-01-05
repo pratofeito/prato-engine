@@ -1,6 +1,8 @@
 #ifndef PTE_STATE_HPP
 #define PTE_STATE_HPP
 
+// #include "engine/include/game-data.hpp"
+
 namespace pte
 {
     class State
@@ -14,6 +16,12 @@ namespace pte
 
         virtual void pause() {}
         virtual void resume() {}
+
+        // template <class T>
+        // void add_state(pte::game_data_ref datas, bool replacing)
+        // {
+        //     datas->state_handler.add_state(pte::state_ref(new T(datas)), replacing);
+        // }
     };
 }
 

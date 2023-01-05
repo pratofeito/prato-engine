@@ -5,8 +5,8 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
-#include "engine/include/state/state.hpp"
-#include "engine/include/game/game.hpp"
+#include "engine/include/state.hpp"
+#include "engine/include/game.hpp"
 #include "states/pause-state.hpp"
 #include "definitions.hpp"
 

@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include <iostream>
-#include "engine/include/state/state.hpp"
-#include "engine/include/game/game.hpp"
+#include "engine/include/state.hpp"
+#include "engine/include/game.hpp"
 #include "states/menu-state.hpp"
 #include "definitions.hpp"
 
