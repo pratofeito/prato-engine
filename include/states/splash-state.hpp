@@ -1,3 +1,11 @@
+/**
+ * @file splash-state.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Example splash state
+ * 
+ */
+
 #ifndef PTE_SPLASH_STATE_HPP
 #define PTE_SPLASH_STATE_HPP
 

@@ -52,7 +52,7 @@ namespace pte
         virtual void draw(float delta_time) = 0;
 
         /**
-         * @brief Add a new state into the state stack
+         * @brief Add a new state to the state stack
          *
          * @tparam T_state Type of state to be inserted
          * @param replacing Replace or not current state

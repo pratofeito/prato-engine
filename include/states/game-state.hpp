@@ -1,3 +1,11 @@
+/**
+ * @file game-state.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Example game state. Runs a bouncing ball demo.
+ * 
+ */
+
 #ifndef PTE_GAME_STATE_HPP
 #define PTE_GAME_STATE_HPP
 

@@ -1,3 +1,11 @@
+/**
+ * @file pause-state.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Example pause state
+ * 
+ */
+
 #ifndef PTE_PAUSE_STATE_HPP
 #define PTE_PAUSE_STATE_HPP
 

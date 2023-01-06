@@ -2,8 +2,8 @@
 
 void GameState::init()
 {
-    assets->load_texture("Pause Button", PAUSE_BUTTON);
-    pause_button.setTexture(assets->get_texture("Pause Button"));
+    assets->load_texture("pause_button", PAUSE_BUTTON);
+    pause_button.setTexture(assets->get_texture("pause_button"));
     pause_button.setPosition(window->getSize().x - pause_button.getLocalBounds().width - 10, pause_button.getPosition().y + 10);
 
     init_ball();
