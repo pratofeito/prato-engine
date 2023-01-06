@@ -35,16 +35,16 @@ void PauseState::handle_input()
 		if (this->data->input.is_sprite_clicked(this->resume_button, sf::Mouse::Left, this->data->window))
 		{
 			// Resume Game By Popping Of The Current State (Pause State)
-			this->data->state_handler.remove_state();
+			remove_state();
 		}
 
 		if (this->data->input.is_sprite_clicked(this->home_button, sf::Mouse::Left, this->data->window))
 		{
 			// Remove The Pause State Off The Stack
-			this->data->state_handler.remove_state();
+			remove_state();
 
 			// Switch To Main Menu State By Replacing The Game State
-			this->data->state_handler.add_state(pte::state_ref(new MainMenuState(data)), true);
+			add_state<MainMenuState>(true);
 		}
 	}
 }

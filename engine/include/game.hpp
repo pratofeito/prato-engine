@@ -36,7 +36,7 @@ namespace pte
         template <class T_state>
         void init_state()
         {
-            // start a new splash state
+            // start the first state, with the game data from this instance
             data->state_handler.add_state(state_ref(new T_state(this->data)), true);
         }
     };

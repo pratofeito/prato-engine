@@ -9,7 +9,7 @@ namespace pte
 
     void Game::run()
     {
-        //check if the game have one state to start
+        // check if the game have one state to start
         if (data->state_handler.have_state_active() == false)
         {
             std::cerr << "No states initialized. Exiting." << std::endl;

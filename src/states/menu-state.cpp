@@ -34,6 +34,7 @@ void MainMenuState::handle_input()
 
         if (this->data->input.is_sprite_clicked(this->play_button, sf::Mouse::Left, this->data->window))
         {
+            // Switch to game state
             add_state<GameState>(true);
         }
     }

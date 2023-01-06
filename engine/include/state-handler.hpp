@@ -1,3 +1,11 @@
+/**
+ * @file state-handler.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Game states handler using a stack.
+ * 
+ */
+
 #ifndef PTE_STATE_HANDLER_HPP
 #define PTE_STATE_HANDLER_HPP
 

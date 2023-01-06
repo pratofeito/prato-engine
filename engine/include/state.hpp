@@ -1,3 +1,11 @@
+/**
+ * @file state.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Pure virtual class with the idea of "state".
+ * 
+ */
+
 #ifndef PTE_STATE_HPP
 #define PTE_STATE_HPP
 
@@ -14,12 +22,6 @@ namespace pte
 
         virtual void pause() {}
         virtual void resume() {}
-
-        // template <class T>
-        // void add_state(pte::game_data_ref datas, bool replacing)
-        // {
-        //     datas->state_handler.add_state(pte::state_ref(new T(datas)), replacing);
-        // }
     };
 }
 
