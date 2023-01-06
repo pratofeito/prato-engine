@@ -1,8 +1,6 @@
 #ifndef PTE_STATE_HPP
 #define PTE_STATE_HPP
 
-// #include "engine/include/game-data.hpp"
-
 namespace pte
 {
     class State

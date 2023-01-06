@@ -1,9 +1,5 @@
 #include "states/splash-state.hpp"
 
-SplashState::SplashState(pte::game_data_ref data) : data(data)
-{
-}
-
 void SplashState::init()
 {
     this->data->assets.load_texture("Splash State Background", SPLASH_SCENE_BACKGROUND_FILEPATH);
@@ -30,8 +26,8 @@ void SplashState::update(float delta_time)
     if (this->clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME)
     {
         // Switch To Main Menu
-        this->data->state_handler.add_state(pte::state_ref(new MainMenuState(data)), true);
-        // add_state<MainMenuState>(data, true);
+        // this->data->state_handler.add_state(pte::state_ref(new MainMenuState(data)), true);
+        add_state<MainMenuState>(true);
     }
 }
 

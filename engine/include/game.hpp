@@ -3,10 +3,23 @@
 
 #include <memory>
 #include <string>
-#include "game-data.hpp"
+#include <SFML/Graphics.hpp>
+#include "state-handler.hpp"
+#include "asset-manager.hpp"
+#include "input-manager.hpp"
 
 namespace pte
 {
+    class GameData
+    {
+    public:
+        StateHandler state_handler;
+        sf::RenderWindow window;
+        AssetManager assets;
+        InputManager input;
+    };
+
+    typedef std::shared_ptr<GameData> game_data_ref;
 
     class Game
     {
@@ -14,7 +27,7 @@ namespace pte
         const float delta_time = 1.0f / 30.0f; // 30fps
         sf::Clock clock;
 
-        game_data_ref data = std::make_shared<game_data>();
+        game_data_ref data = std::make_shared<GameData>();
 
     public:
         Game(int width, int height, std::string title);
