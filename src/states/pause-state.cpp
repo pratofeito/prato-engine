@@ -1,9 +1,5 @@
 #include "states/pause-state.hpp"
 
-PauseState::PauseState(pte::game_data_ref data) : data(data)
-{
-}
-
 void PauseState::init()
 {
 	// setup title

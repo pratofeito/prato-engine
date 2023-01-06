@@ -26,7 +26,6 @@ void SplashState::update(float delta_time)
     if (this->clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME)
     {
         // Switch To Main Menu
-        // this->data->state_handler.add_state(pte::state_ref(new MainMenuState(data)), true);
         add_state<MainMenuState>(true);
     }
 }

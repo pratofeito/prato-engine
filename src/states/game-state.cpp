@@ -1,9 +1,5 @@
 #include "states/game-state.hpp"
 
-GameState::GameState(pte::game_data_ref data) : data(data)
-{
-}
-
 void GameState::init()
 {
     this->data->assets.load_texture("Pause Button", PAUSE_BUTTON);
@@ -27,7 +23,7 @@ void GameState::handle_input()
         if (this->data->input.is_sprite_clicked(this->pause_button, sf::Mouse::Left, this->data->window))
         {
             // PAUSE
-            this->data->state_handler.add_state(pte::state_ref(new PauseState(data)), false);
+            add_state<PauseState>(false);
         }
     }
 }

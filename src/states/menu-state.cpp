@@ -1,9 +1,5 @@
 #include "states/menu-state.hpp"
 
-MainMenuState::MainMenuState(pte::game_data_ref data) : data(data)
-{
-}
-
 void MainMenuState::init()
 {
     // setup title
@@ -38,7 +34,7 @@ void MainMenuState::handle_input()
 
         if (this->data->input.is_sprite_clicked(this->play_button, sf::Mouse::Left, this->data->window))
         {
-            this->data->state_handler.add_state(pte::state_ref(new GameState(this->data)), true);
+            add_state<GameState>(true);
         }
     }
 }
