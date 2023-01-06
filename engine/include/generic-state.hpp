@@ -1,9 +1,9 @@
 /**
  * @file generic-state.hpp
  * @date 2023-01-06
- * 
+ *
  * @brief Basic components for a functional state, using the "state" concept.
- * 
+ *
  */
 
 #ifndef PTE_GENERIC_STATE_HPP
@@ -20,10 +20,21 @@ namespace pte
 
     class GenericState : public pte::State
     {
-    protected:
+    private:
         pte::game_data_ref data;
+
+    protected:
         sf::Clock clock;
         sf::Sprite background;
+
+        /// @brief window component
+        sf::RenderWindow *window = &data->window;
+
+        /// @brief tool for managing assets
+        AssetManager *assets = &data->assets;
+
+        /// @brief tool for managing inputs
+        InputManager *input = &data->input;
 
     public:
         GenericState(pte::game_data_ref data) : data(data) {}
@@ -42,7 +53,7 @@ namespace pte
 
         /**
          * @brief Add a new state into the state stack
-         * 
+         *
          * @tparam T_state Type of state to be inserted
          * @param replacing Replace or not current state
          */
@@ -57,7 +68,6 @@ namespace pte
         {
             this->data->state_handler.remove_state();
         }
-        
     };
 }
 

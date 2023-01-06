@@ -2,9 +2,9 @@
 
 void GameState::init()
 {
-    this->data->assets.load_texture("Pause Button", PAUSE_BUTTON);
-    pause_button.setTexture(this->data->assets.get_texture("Pause Button"));
-    pause_button.setPosition(this->data->window.getSize().x - pause_button.getLocalBounds().width - 10, pause_button.getPosition().y + 10);
+    assets->load_texture("Pause Button", PAUSE_BUTTON);
+    pause_button.setTexture(assets->get_texture("Pause Button"));
+    pause_button.setPosition(window->getSize().x - pause_button.getLocalBounds().width - 10, pause_button.getPosition().y + 10);
 
     init_ball();
 }
@@ -13,14 +13,14 @@ void GameState::handle_input()
 {
     sf::Event event;
 
-    while (this->data->window.pollEvent(event))
+    while (window->pollEvent(event))
     {
         if (sf::Event::Closed == event.type)
         {
-            this->data->window.close();
+            window->close();
         }
 
-        if (this->data->input.is_sprite_clicked(this->pause_button, sf::Mouse::Left, this->data->window))
+        if (input->is_sprite_clicked(this->pause_button, sf::Mouse::Left, *window))
         {
             // PAUSE
             add_state<PauseState>(false);
@@ -35,10 +35,10 @@ void GameState::update(float delta_time)
 
 void GameState::draw(float delta_time)
 {
-    this->data->window.clear(sf::Color(56, 42, 55));
-    this->data->window.draw(this->ball);
-    this->data->window.draw(this->pause_button);
-    this->data->window.display();
+    window->clear(sf::Color(56, 42, 55));
+    window->draw(this->ball);
+    window->draw(this->pause_button);
+    window->display();
 }
 
 void GameState::init_ball()
