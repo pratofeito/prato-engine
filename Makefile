@@ -33,15 +33,18 @@ INCLUDE		:= -I ./ -I include -I engine/include -I libs/sfml-${SYSTEM}/include
 
 SRC			:= $(call rwildcard, src, *.cpp) $(call rwildcard, engine, *.cpp)
 OBJECTS		:= $(SRC:%.cpp=$(BUILD)/%.o)
+DEPENDS		:= $(SRC:%.cpp=$(BUILD)/%.d)
 
 
 # build targets
 
 all: $(TARGET)
 
+-include $(DEPENDS)
+
 $(BUILD)/%.o: %.cpp
 	${MKDIR}
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -MMD -MP -c $< -o $@
 
 $(TARGET): $(OBJECTS)
 	${MKDIR}

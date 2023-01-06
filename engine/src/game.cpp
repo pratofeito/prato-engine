@@ -1,20 +1,15 @@
-#include "game/game.hpp"
-#include "states/splash-state.hpp"
+#include "game.hpp"
 
 namespace pte
 {
     Game::Game(int width, int height, std::string title)
     {
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-        this->run();
     }
 
     void Game::run()
     {
-        // start a new splash state
-        data->state_handler.add_state(state_ref(new SplashState(this->data)), true);
-
-        //check if the game have one state to start
+        // check if the game have one state to start
         if (data->state_handler.have_state_active() == false)
         {
             std::cerr << "No states initialized. Exiting." << std::endl;

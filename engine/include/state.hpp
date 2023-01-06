@@ -1,3 +1,11 @@
+/**
+ * @file state.hpp
+ * @date 2023-01-06
+ * 
+ * @brief Pure virtual class with the idea of "state".
+ * 
+ */
+
 #ifndef PTE_STATE_HPP
 #define PTE_STATE_HPP
 

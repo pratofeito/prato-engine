@@ -1,4 +1,4 @@
-#include "asset-manager/asset-manager.hpp"
+#include "asset-manager.hpp"
 
 namespace pte
 {

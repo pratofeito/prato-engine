@@ -1,4 +1,4 @@
-#include "input-manager/input-manager.hpp"
+#include "input-manager.hpp"
 
 namespace pte
 {
