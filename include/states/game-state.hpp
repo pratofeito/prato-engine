@@ -14,20 +14,31 @@
 #include "states/pause-state.hpp"
 #include "definitions.hpp"
 
+
+#define PLAYER_SIZE 40
+#define WIDTH SCREEN_WIDTH / PLAYER_SIZE
+#define HEIGHT SCREEN_HEIGHT / PLAYER_SIZE
+#define SPEED 1
+
 class GameState : public pte::GenericState
 {
 private:
     sf::Sprite pause_button;
 
-    // demo things
-    float pi = 3.14159f;
-    float ballRadius = 10.f;
-    float ballSpeed = 400.f;
-    float ballAngle = 0.f;
-    sf::CircleShape ball;
+    // player
+    sf::RectangleShape player;
+    sf::Vector2i player_pos;
+    sf::Vector2i new_player_pos;
 
-    void init_ball();
-    void update_ball(float delta_time);
+    // movement
+    bool moving;
+    float moving_elapsed_time;
+    sf::Vector2i player_pos_start;
+    sf::Vector2i player_pos_end;
+
+    // guidelines
+    sf::RectangleShape guide_x[WIDTH];
+    sf::RectangleShape guide_y[HEIGHT];
 
 public:
     using GenericState::GenericState;
@@ -36,6 +47,11 @@ public:
     void handle_input();
     void update(float delta_time);
     void draw(float delta_time);
+
+    // movement methods
+    void move_adjacent_tile(int x, int y);
+    bool move(sf::Vector2i player_pos_start, sf::Vector2i player_pos_end);
+    sf::Vector2i update_movement(float delta_time);
 };
 
 #endif
