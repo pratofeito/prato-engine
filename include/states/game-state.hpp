@@ -25,6 +25,11 @@ class GameState : public pte::GenericState
 private:
     sf::Sprite pause_button;
 
+    // view
+    sf::View default_view;
+    sf::View view;
+    float scale;
+
     // player
     sf::RectangleShape player;
     sf::Vector2i player_pos;
