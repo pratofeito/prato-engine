@@ -32,7 +32,7 @@ namespace pte
     class Game
     {
     private:
-        const float delta_time = 1.0f / 30.0f; // 30fps
+        const float delta_time = 1.0f / 60.0f; // 60fps
         sf::Clock clock;
 
         game_data_ref data = std::make_shared<GameData>();
