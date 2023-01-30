@@ -8,6 +8,9 @@ void GameState::init()
     pause_button.setTexture(assets->get_texture("pause_button"));
     pause_button.setPosition(window->getSize().x - pause_button.getLocalBounds().width - 10, pause_button.getPosition().y + 10);
 
+    // init imgui
+    ImGui::SFML::Init(*window);
+
     // view
     default_view = window->getView();
     view = sf::View(sf::FloatRect(200, 200, 320, 240)); // posso usar o .reset(). também o setCenter e setSize
@@ -50,6 +53,9 @@ void GameState::handle_input()
 
     while (window->pollEvent(event))
     {
+        // imgui event
+        ImGui::SFML::ProcessEvent(*window, event);
+
         if (sf::Event::Closed == event.type)
         {
             window->close();
@@ -97,6 +103,13 @@ void GameState::handle_input()
 
 void GameState::update(float delta_time)
 {
+    // update imgui
+    sf::Time time = sf::seconds(0);
+    ImGui::SFML::Update(*window, time);
+    ImGui::Begin("Hello, world!");
+    ImGui::Button("Look at this pretty button");
+    ImGui::End();
+
     // update player position
     sf::Vector2i center_update = update_movement(delta_time);
 
@@ -128,7 +141,12 @@ void GameState::draw(float delta_time)
     // default view
     window->setView(default_view);
 
+    // pause
     window->draw(this->pause_button);
+
+    // draw imgui
+    ImGui::SFML::Render(*window);
+
     window->display();
 }
 

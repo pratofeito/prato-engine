@@ -13,7 +13,8 @@
 #include "engine/include/generic-state.hpp"
 #include "states/pause-state.hpp"
 #include "definitions.hpp"
-
+#include "imgui.h"
+#include "imgui-SFML.h"
 
 #define TILE_SIZE 32
 #define WIDTH SCREEN_WIDTH / TILE_SIZE
