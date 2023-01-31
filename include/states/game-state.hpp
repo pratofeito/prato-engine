@@ -1,9 +1,9 @@
 /**
  * @file game-state.hpp
  * @date 2023-01-06
- * 
+ *
  * @brief Example game state. Runs a bouncing ball demo.
- * 
+ *
  */
 
 #ifndef PTE_GAME_STATE_HPP
@@ -51,6 +51,9 @@ private:
     // guidelines
     sf::RectangleShape guide_x[WIDTH];
     sf::RectangleShape guide_y[HEIGHT];
+
+    // teste
+    sf::Clock dtTime;
 
 public:
     using GenericState::GenericState;

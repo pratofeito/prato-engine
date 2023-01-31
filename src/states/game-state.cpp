@@ -10,6 +10,8 @@ void GameState::init()
 
     // init imgui
     ImGui::SFML::Init(*window);
+    ImGui::NewFrame();
+    dtTime = sf::Clock();
 
     // view
     default_view = window->getView();
@@ -50,7 +52,6 @@ void GameState::init()
 void GameState::handle_input()
 {
     sf::Event event;
-
     while (window->pollEvent(event))
     {
         // imgui event
@@ -98,17 +99,18 @@ void GameState::handle_input()
     {
         move_adjacent_tile(0, 1);
     }
-
 }
 
 void GameState::update(float delta_time)
 {
     // update imgui
-    sf::Time time = sf::seconds(0);
+    sf::Time time(dtTime.restart());
+    // sf::Time time = sf::seconds(0);
     ImGui::SFML::Update(*window, time);
     ImGui::Begin("Hello, world!");
     ImGui::Button("Look at this pretty button");
     ImGui::End();
+    ImGui::EndFrame();
 
     // update player position
     sf::Vector2i center_update = update_movement(delta_time);
