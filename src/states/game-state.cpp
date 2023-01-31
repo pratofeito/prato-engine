@@ -106,9 +106,14 @@ void GameState::update(float delta_time)
     // update imgui
     sf::Time time(dtTime.restart());
     // sf::Time time = sf::seconds(0);
+    // sf::Vector2i pixelPos = sf::Mouse::getPosition(*window);
+    // sf::Vector2f worldPos = window->mapPixelToCoords(pixelPos, view);
     ImGui::SFML::Update(*window, time);
     ImGui::Begin("Hello, world!");
     ImGui::Button("Look at this pretty button");
+    // ImGui::Text("%f %f", worldPos.x, worldPos.y);
+    // pte::mouseCoordBox(*window, view);
+    // pte::getSpriteList(*assets);
     ImGui::End();
     ImGui::EndFrame();
 

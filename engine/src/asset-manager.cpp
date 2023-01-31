@@ -19,7 +19,18 @@ namespace pte
 
     sf::Texture &AssetManager::get_texture(std::string name)
     {
-        return this->textures.at(name); 
+        return this->textures.at(name);
+    }
+
+    std::vector<std::string> AssetManager::get_names()
+    {
+        std::vector<std::string> names;
+        for (auto a : this->textures)
+        {
+            names.push_back(a.first);
+        }
+
+        return names;
     }
 
     // Font
@@ -39,6 +50,6 @@ namespace pte
 
     sf::Font &AssetManager::get_font(std::string name)
     {
-        return this->fonts.at(name); 
+        return this->fonts.at(name);
     }
 }

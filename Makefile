@@ -26,7 +26,7 @@ rwildcard = $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2)$(filter $(subst
 # common variables
 
 CC			:= g++
-CXXFLAGS	:= -std=c++11 -g -Wall
+CXXFLAGS	:= -std=c++17 -g -Wall
 LDFLAGS		:= -Llibs/sfml-${SYSTEM}/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -lGL
 BUILD		:= ./build
 INCLUDE		:= -I ./ -I include -I engine/include -I libs/sfml-${SYSTEM}/include -I engine/include/imgui
