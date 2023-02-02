@@ -2,7 +2,7 @@
 
 void DebugState::init()
 {
-    namespace filesystem = std::filesystem;
+    namespace filesys = std::filesystem;
     // set framerate
     window->setFramerateLimit(60);
 
@@ -15,24 +15,15 @@ void DebugState::init()
     view = sf::View(sf::FloatRect(200, 200, 320, 240));
 
     // find textures
-    std::vector<std::string> stringNames;
-    std::string path = filesystem::current_path();
-    for (const auto &entry : filesystem::directory_iterator(path + "/resources"))
-        stringNames.push_back(entry.path().filename());
-
-    teste = stringNames;
-    /* int n = stringNames.size();
-    this->nameSize = n;
-    this->names = new const char *[n];
-    for (int i = 0; i < n; i++)
+    std::string path = filesys::current_path();
+    for (const auto &entry : filesys::directory_iterator(path + "/resources"))
     {
-        this->names[i] = stringNames[i].c_str();
+        if (!filesys::is_directory(entry))
+        {
+            std::string fileName = entry.path().filename();
+            names.push_back(fileName);
+        }
     }
-
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << this->names[i] << std::endl;
-    } */
 }
 
 void DebugState::handle_input()
@@ -63,18 +54,21 @@ void DebugState::update(float delta_time)
     ImGui::Text("World coord: %f %f", worldPos.x, worldPos.y);
     static int currentItem = 2;
 
-    /* ImGui::ListBoxHeader("Sprite Names", nameSize, -1);
-    for (auto & item : teste) {
-
-    }
-
-        ImGui::ListBox("Sprite Names", &currentItem, names, nameSize, 4, ); */
-    /* if (ImGui::ListBoxHeader("List", size))
+    // COMBO
+    static int item_current_id = 0;
+    const char *preview_value = names[item_current_id].c_str();
+    if (ImGui::BeginCombo("Sprite Combo", preview_value))
     {
-        ImGui::Selectable("Selected", true);
-        ImGui::Selectable("Not Selected", false);
-        ImGui::ListBoxFooter();
-    } */
+        for (int n = 0; n < names.size(); n++)
+        {
+            const bool is_selected = (item_current_id == n);
+            if (ImGui::Selectable(names[n].c_str(), is_selected))
+                item_current_id = n;
+            if (is_selected)
+                ImGui::SetItemDefaultFocus();
+        }
+        ImGui::EndCombo();
+    }
     ImGui::End();
     ImGui::EndFrame();
 }

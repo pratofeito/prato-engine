@@ -12,9 +12,7 @@ class DebugState : public pte::GenericState
 private:
     sf::View view;
     sf::Clock dtTime;
-    const char **names;
-    unsigned int nameSize;
-    std::vector<std::string> teste;
+    std::vector<std::string> names;
 
 public:
     using GenericState::GenericState;
