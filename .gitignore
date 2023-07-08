@@ -1,3 +1,7 @@
-**/program
-**/program.exe
+# exe
+**/demo
+**/demo.exe
+
+# folders
 .vscode/
+build/
