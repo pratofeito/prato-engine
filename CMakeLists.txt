@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
-project(application LANGUAGES CXX)
+project(application_library LANGUAGES CXX)
 
-option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" ON)
+option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" OFF)
 
 include(FetchContent)
 set(FETCHCONTENT_QUIET FALSE)
@@ -24,18 +24,21 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories("${PROJECT_SOURCE_DIR}/engine/include")
 
 # Add the executable target
-add_executable(application ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
+# add_executable(application_library ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
+
+# Add the library target
+add_library(application_library ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
 
 # Link SFML and Box2D to the target
-target_link_libraries(application PRIVATE sfml-audio sfml-graphics sfml-window sfml-system)
-target_compile_features(application PRIVATE cxx_std_17)
+target_link_libraries(application_library PRIVATE sfml-audio sfml-graphics sfml-window sfml-system)
+target_compile_features(application_library PRIVATE cxx_std_17)
 
 # Copy shared libraries on Windows
 if (WIN32 AND BUILD_SHARED_LIBS)
-    add_custom_command(TARGET application POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:application> $<TARGET_FILE_DIR:application> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET application_library POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:application_library> $<TARGET_FILE_DIR:application_library> COMMAND_EXPAND_LISTS)
 endif()
 
 # Install the target
-install(TARGETS application)
+install(TARGETS application_library)
 
