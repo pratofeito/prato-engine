@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(application LANGUAGES CXX)
 
-option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" OFF)
+option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" ON)
 
 include(FetchContent)
 set(FETCHCONTENT_QUIET FALSE)
