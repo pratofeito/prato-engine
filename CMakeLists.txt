@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.21)
 project(prato-engine LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" OFF)
+option(BUILD_DEMO "Build the prato-engine demo application" ON)
 
 include(FetchContent)
 set(FETCHCONTENT_QUIET FALSE)
@@ -23,7 +24,7 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories("${PROJECT_SOURCE_DIR}/include/prato-engine")
 
 # Add the executable (demo) target
-add_executable(prato-demo ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
+# add_executable(prato-demo ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
 
 # Add the library target
 add_library(prato-engine ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
@@ -32,7 +33,7 @@ add_library(prato-engine ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
 set(LIBS sfml-audio sfml-graphics sfml-window sfml-system)
 
 target_link_libraries(prato-engine PRIVATE ${LIBS})
-target_link_libraries(prato-demo PRIVATE ${LIBS})
+# target_link_libraries(prato-demo PRIVATE ${LIBS})
 
 target_compile_features(prato-engine PRIVATE cxx_std_17)
 
@@ -40,6 +41,11 @@ target_compile_features(prato-engine PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET prato-engine POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:prato-engine> $<TARGET_FILE_DIR:prato-engine> COMMAND_EXPAND_LISTS)
+endif()
+
+# Build engine demo
+if (BUILD_DEMO)
+	add_subdirectory(demo)
 endif()
 
 # Install the target
