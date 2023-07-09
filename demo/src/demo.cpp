@@ -1,8 +1,6 @@
 #include <iostream>
-#include "engine/include/game.hpp"
-#include "definitions.hpp"
-#include "states/splash-state.hpp"
-#include "states/game-state.hpp"
+#include "game.hpp"
+#include "game-state.hpp"
 
 int main()
 {
