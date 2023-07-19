@@ -15,6 +15,27 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(SFML)
 
+# Download Dear ImGui
+FetchContent_Declare(
+  imgui
+  GIT_REPOSITORY https://github.com/ocornut/imgui.git
+  GIT_TAG v1.89.7
+)
+FetchContent_MakeAvailable(imgui)
+
+# Download and configure ImGui-SFML
+FetchContent_Declare(
+  imgui-sfml
+  GIT_REPOSITORY https://github.com/SFML/imgui-sfml.git
+  GIT_TAG 2.6.x
+)
+
+set(IMGUI_DIR ${imgui_SOURCE_DIR})
+set(IMGUI_SFML_FIND_SFML OFF)
+set(IMGUI_SFML_IMGUI_DEMO ON)
+
+FetchContent_MakeAvailable(imgui-sfml)
+
 # Add the source files
 file(GLOB_RECURSE SRC_FILES_PROJECT "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
@@ -22,9 +43,8 @@ file(GLOB_RECURSE SRC_FILES_PROJECT "${PROJECT_SOURCE_DIR}/src/*.cpp")
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories("${PROJECT_SOURCE_DIR}/include/prato-engine")
-
-# Add the executable (demo) target
-# add_executable(prato-demo ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
+include_directories("${imgui_SOURCE_DIR}")
+include_directories("${imgui-sfml_SOURCE_DIR}")
 
 # Add the library target
 add_library(prato-engine ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
@@ -33,7 +53,7 @@ add_library(prato-engine ${SRC_FILES_ENGINE} ${SRC_FILES_PROJECT})
 set(LIBS sfml-audio sfml-graphics sfml-window sfml-system)
 
 target_link_libraries(prato-engine PRIVATE ${LIBS})
-# target_link_libraries(prato-demo PRIVATE ${LIBS})
+target_link_libraries(prato-engine PRIVATE ImGui-SFML::ImGui-SFML)
 
 target_compile_features(prato-engine PRIVATE cxx_std_17)
 

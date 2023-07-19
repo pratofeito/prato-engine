@@ -3,6 +3,10 @@
 void GameState::init()
 {
     init_ball();
+
+    // imgui init
+    ImGui::SFML::Init(*window);
+
 }
 
 void GameState::handle_input()
@@ -11,9 +15,13 @@ void GameState::handle_input()
 
     while (window->pollEvent(event))
     {
+        // imgui event
+        ImGui::SFML::ProcessEvent(*window, event);
+
         if (sf::Event::Closed == event.type)
         {
             window->close();
+            ImGui::SFML::Shutdown();
         }
     }
 }
@@ -21,6 +29,13 @@ void GameState::handle_input()
 void GameState::update(float delta_time)
 {
     update_ball(delta_time);
+
+    // imgui windows
+    ImGui::SFML::Update(*window, deltaClock.restart());
+    // ImGui::ShowDemoWindow();
+    ImGui::Begin("Hello, world!");
+    ImGui::Button("Look at this pretty button");
+    ImGui::End();
 }
 
 void GameState::draw(float delta_time)
@@ -28,6 +43,10 @@ void GameState::draw(float delta_time)
     window->clear(sf::Color(56, 42, 55));
     window->draw(this->ball);
     window->draw(this->pause_button);
+
+    // imgui draw
+    ImGui::SFML::Render(*window);
+
     window->display();
 }
 

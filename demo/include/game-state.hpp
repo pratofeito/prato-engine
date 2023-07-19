@@ -15,11 +15,16 @@
 #include <cmath>
 #include "generic-state.hpp"
 
+// imgui
+#include "imgui.h"
+#include "imgui-SFML.h"
+
 
 class GameState : public pte::GenericState
 {
 private:
     sf::Sprite pause_button;
+    sf::Clock deltaClock;
 
     // demo things
     float pi = 3.14159f;
@@ -30,6 +35,7 @@ private:
 
     void init_ball();
     void update_ball(float delta_time);
+    // void update_imgui();
 
 public:
     using GenericState::GenericState;
