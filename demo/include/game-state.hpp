@@ -9,8 +9,9 @@
 #ifndef PTE_DEMO_GAME_STATE_HPP
 #define PTE_DEMO_GAME_STATE_HPP
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+#define SCALE 1
 
 #include <cmath>
 #include "generic-state.hpp"

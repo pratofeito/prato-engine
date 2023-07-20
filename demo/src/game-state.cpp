@@ -2,6 +2,7 @@
 
 void GameState::init()
 {
+    window->setSize(sf::Vector2u(SCREEN_WIDTH * SCALE, SCREEN_HEIGHT * SCALE));
     init_ball();
 }
 
